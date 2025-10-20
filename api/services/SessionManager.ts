@@ -142,11 +142,11 @@ export class SessionManager {
   canStartGame(sessionId: string): boolean {
     const session = this.sessions.get(sessionId);
     if (!session || session.status !== 'waiting') return false;
-
+  
     const humanPlayers = session.players.filter(p => !p.isBot);
     const allHumansReady = humanPlayers.every(p => p.isReady && p.isConnected);
     
-    return session.players.length >= 2 && allHumansReady;
+    return session.players.length >= 1 && allHumansReady;
   }
 
   startGame(sessionId: string): boolean {
@@ -157,7 +157,6 @@ export class SessionManager {
     session.currentMinigame = 0;
     session.results = [];
     
-    // Resetear puntuaciones
     session.players.forEach(player => {
       player.score = 0;
     });

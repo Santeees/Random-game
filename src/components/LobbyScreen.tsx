@@ -34,7 +34,7 @@ const LobbyScreen: React.FC<LobbyScreenProps> = ({
   const humanPlayers = session.players.filter(p => !p.isBot);
   const bots = session.players.filter(p => p.isBot);
   const allPlayersReady = humanPlayers.every(player => player.isReady);
-  const canStartGame = session.players.length >= 2 && allPlayersReady;
+  const canStartGame = session.players.length >= 1 && allPlayersReady;
   const canAddBot = session.players.length < 4 && session.status === 'waiting';
 
   return (
@@ -152,7 +152,7 @@ const LobbyScreen: React.FC<LobbyScreenProps> = ({
             </button>
           ) : (
             <div className="w-full bg-green-500/20 border border-green-400 text-green-400 font-semibold py-3 px-6 rounded-lg text-center">
-              ✓ Estás listo - Esperando otros jugadores
+              ✓ Estás listo - {session.players.length > 1 ? 'Esperando otros jugadores' : 'Puedes iniciar el juego'}
             </div>
           )}
 
@@ -190,7 +190,7 @@ const LobbyScreen: React.FC<LobbyScreenProps> = ({
               <p>• Se jugarán 5 minijuegos aleatorios</p>
               <p>• Cada victoria otorga 1 punto</p>
               <p>• El jugador con más puntos gana</p>
-              <p>• Mínimo 2 jugadores para comenzar</p>
+              <p>• Mínimo 1 jugador para comenzar</p>
             </div>
           </div>
         </div>

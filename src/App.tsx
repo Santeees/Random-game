@@ -34,7 +34,6 @@ function App() {
     setFinalResults
   } = useGameStore();
 
-  // Sincronizar estado del socket con el store
   useEffect(() => {
     setConnected(isConnected);
   }, [isConnected, setConnected]);
@@ -53,7 +52,6 @@ function App() {
     }
   }, [error, setError]);
 
-  // Escuchar eventos específicos del juego
   useEffect(() => {
     if (!socket) return;
 
